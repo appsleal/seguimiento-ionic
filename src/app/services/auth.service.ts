@@ -4,12 +4,14 @@ import { Injectable } from '@angular/core';
 import { Router } from '@angular/router';
 import { HotToastService } from '@ngneat/hot-toast';
 import { DB_URL } from 'src/environments/environment';
+import { JwtHelperService, JWT_OPTIONS } from '@auth0/angular-jwt';
 
 @Injectable({
   providedIn: 'root',
 })
 export class AuthService {
   section = '/user';
+  jwtHelper = new JwtHelperService();
 
   constructor(
     private http: HttpClient,
@@ -22,6 +24,25 @@ export class AuthService {
   }
   getToken() {
     return localStorage.getItem('token');
+  }
+
+  public isAuthenticated(): boolean {
+    const token = localStorage.getItem('token') ?? '';
+    // Check whether the token is expired and return
+    // true or false
+
+    return !this.jwtHelper.isTokenExpired(token);
+  }
+
+  public canAccess() {
+    const token = localStorage.getItem('token') ?? '';
+    const decodedToken = this.jwtHelper.decodeToken(token);
+
+    const role = decodedToken['usuario']['rol'];
+    if (role === 'admin') {
+      return true;
+    }
+    return false;
   }
 
   login(user) {
@@ -38,7 +59,7 @@ export class AuthService {
         (res) => {
           if (res['token']) {
             this.setToken(res['token']);
-            this.router.navigateByUrl('/main-page');
+            this.router.navigateByUrl('/admin');
           } else {
             this.toast.error('correo contraseña errada');
           }

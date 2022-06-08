@@ -50,4 +50,14 @@ export class AdminService {
         })
       );
   }
+
+  createUser(user) {
+    return this.http.post(DB_URL + '/user' + '/create', user).pipe(
+      this.toast.observe({
+        loading: 'Espere un momento...',
+        success: 'Se ha creado el usuario correctamente',
+        error: 'Error encontrado al intentar crear un usuario',
+      })
+    );
+  }
 }

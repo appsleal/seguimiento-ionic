@@ -1,3 +1,4 @@
+/* eslint-disable @typescript-eslint/dot-notation */
 import { Component, OnInit } from '@angular/core';
 import { FormBuilder, FormGroup, Validators } from '@angular/forms';
 import { AdminService } from 'src/app/services/admin.service';
@@ -9,14 +10,43 @@ import { AdminService } from 'src/app/services/admin.service';
 })
 export class UserComponent implements OnInit {
   formGroup: FormGroup;
-  constructor(
-    private formBuilder: FormBuilder,
-    private service: AdminService
-  ) {}
+  municipios: any;
+
+  roles = [
+    {
+      id: 0,
+      nombre: 'Administrador',
+    },
+    {
+      id: 1,
+      nombre: 'Creador',
+    },
+    {
+      id: 2,
+      nombre: 'Digitalizador',
+    },
+    {
+      id: 3,
+      nombre: 'Validador',
+    },
+    {
+      id: 4,
+      nombre: 'Visor',
+    },
+  ];
+
+  constructor(private formBuilder: FormBuilder, private service: AdminService) {
+    this.service.getMunicipios().subscribe((data) => {
+      this.municipios = [...data['municipio']];
+      console.log({
+        municipios: this.municipios,
+      });
+    });
+  }
 
   createUser() {
-    console.log({
-      user: this.formGroup.value.usuario,
+    this.service.createUser(this.formGroup.value).subscribe((data) => {
+      console.log(data);
     });
   }
 

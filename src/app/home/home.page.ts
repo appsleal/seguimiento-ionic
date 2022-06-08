@@ -5,6 +5,8 @@ import { HttpClient } from '@angular/common/http';
 import { ToastController } from '@ionic/angular';
 import { Router } from '@angular/router';
 import { Storage } from '@ionic/storage';
+import { HotToastService } from '@ngneat/hot-toast';
+import { AuthService } from '../services/auth.service';
 
 @Component({
   selector: 'app-home',
@@ -19,10 +21,8 @@ export class HomePage implements OnInit {
 
   constructor(
     public formBuilder: FormBuilder,
-    public httpClient: HttpClient,
-    public toastController: ToastController,
     public router: Router,
-    private storage: Storage
+    private service: AuthService
   ) {}
 
   get errorControl() {
@@ -31,7 +31,6 @@ export class HomePage implements OnInit {
 
   ngOnInit(): void {
     this.myForm = this.formBuilder.group({
-      password: ['', [Validators.required, Validators.minLength(3)]],
       correo: [
         '',
         [
@@ -39,35 +38,12 @@ export class HomePage implements OnInit {
           Validators.pattern('[a-z0-9._%+-]+@[a-z0-9.-]+.[a-z]{2,3}$'),
         ],
       ],
+      password: ['', [Validators.required, Validators.minLength(3)]],
     });
-  }
-
-  async presentToast(text) {
-    const toast = await this.toastController.create({
-      message: text,
-      duration: 2000,
-    });
-    toast.present();
   }
 
   submitForm() {
     this.submitted = true;
-
-    this.httpClient
-      .post('http://localhost:4001/api/user/login', this.myForm.value)
-      .subscribe(
-        (res) => {
-          if (res['token']) {
-            this.presentToast('Ingresado exitosamente');
-            this.storage.set('token', res['token']);
-            this.router.navigateByUrl('/main-page');
-          } else {
-            this.presentToast('correo contraseña errada');
-          }
-        },
-        (err) => {
-          this.presentToast('correo contraseña errada');
-        }
-      );
+    this.service.login(this.myForm.value);
   }
 }

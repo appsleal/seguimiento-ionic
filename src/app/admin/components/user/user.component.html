@@ -1,0 +1,25 @@
+<ion-card>
+  <ion-card-header>
+    <ion-card-title>
+      <h1>Creador de Archivos</h1>
+    </ion-card-title>
+  </ion-card-header>
+  <ion-card-content>
+    <form [formGroup]="formGroup">
+      <ion-grid>
+        <ion-row>
+          <ion-col>
+            <ion-item fill="outline">
+              <ion-label position="floating">
+                Nombre
+              </ion-label>
+              <ion-input type="text" formControlName="name"></ion-input>
+            </ion-item>
+          </ion-col>
+        </ion-row>
+      </ion-grid>
+
+      <ion-button color="primary" expand="block" type="submit">Subir</ion-button>
+    </form>
+  </ion-card-content>
+</ion-card>

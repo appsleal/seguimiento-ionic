@@ -7,19 +7,10 @@ const routes: Routes = [
     path: '',
     component: HomePage,
   },
-
-  {
-    path: 'main-page',
-    loadChildren: () => import('./main-page/main-page.module').then( m => m.MainPagePageModule)
-  },
-  {
-    path: 'digitalizador',
-    loadChildren: () => import('./digitalizador/digitalizador.module').then( m => m.DigitalizadorPageModule)
-  },
 ];
 
 @NgModule({
   imports: [RouterModule.forChild(routes)],
-  exports: [RouterModule]
+  exports: [RouterModule],
 })
 export class HomePageRoutingModule {}

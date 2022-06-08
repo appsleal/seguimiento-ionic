@@ -10,11 +10,11 @@ import { CreatorService } from '../services/creator.service';
 export class CreatorPage implements OnInit {
   navigate = [
     {
-      title: 'Creador',
+      title: 'Creador de documentos',
       url: 'create',
     },
     {
-      title: 'Lista',
+      title: 'Lista de documentos creados',
       url: 'list',
     },
   ];

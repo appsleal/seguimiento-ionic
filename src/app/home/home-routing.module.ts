@@ -12,6 +12,10 @@ const routes: Routes = [
     path: 'main-page',
     loadChildren: () => import('./main-page/main-page.module').then( m => m.MainPagePageModule)
   },
+  {
+    path: 'digitalizador',
+    loadChildren: () => import('./digitalizador/digitalizador.module').then( m => m.DigitalizadorPageModule)
+  },
 ];
 
 @NgModule({

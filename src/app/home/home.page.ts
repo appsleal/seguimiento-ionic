@@ -3,6 +3,7 @@ import { FormBuilder, FormGroup, Validators } from '@angular/forms';
 import { HttpClient } from '@angular/common/http';
 import { ToastController } from '@ionic/angular';
 import { Router } from '@angular/router';
+import { Storage } from '@ionic/storage';
 
 @Component({
   selector: 'app-home',
@@ -15,7 +16,7 @@ export class HomePage implements OnInit {
   correo = "appsleal@gmail.com";
   password = "masternes1997";
 
-  constructor(public formBuilder: FormBuilder, public httpClient: HttpClient,public toastController: ToastController, public router: Router) {}
+  constructor(public formBuilder: FormBuilder, public httpClient: HttpClient,public toastController: ToastController, public router: Router, private storage: Storage) {}
 
   ngOnInit(): void {
     this.myForm = this.formBuilder.group({
@@ -48,6 +49,7 @@ export class HomePage implements OnInit {
     this.httpClient.post("http://localhost:4001/api/user/login",this.myForm.value).subscribe(res=>{
       if(res["token"]){
         this.presentToast("Ingresado exitosamente");
+        this.storage.set("token",res["token"]);
         this.router.navigateByUrl("/home/main-page")
       }else{
         this.presentToast("correo contraseña errada");

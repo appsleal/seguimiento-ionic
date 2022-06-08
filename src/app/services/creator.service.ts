@@ -17,7 +17,7 @@ export class CreatorService {
       .pipe(
         this.toast.observe({
           loading: 'Espere un momento...',
-          success: 'Archibo subido correctamente',
+          success: 'Archivo subido correctamente',
           error:
             'Error encontrado al subir el archivo, por favor intente de nuevo',
         })

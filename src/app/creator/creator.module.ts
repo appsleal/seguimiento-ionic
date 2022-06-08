@@ -7,14 +7,18 @@ import { IonicModule } from '@ionic/angular';
 import { CreatorPageRoutingModule } from './creator-routing.module';
 
 import { CreatorPage } from './creator.page';
+import { CreateComponent } from './components/create/create.component';
+import { ListComponent } from './components/list/list.component';
+import { NgxDatatableModule } from '@swimlane/ngx-datatable';
 
 @NgModule({
   imports: [
     CommonModule,
     FormsModule,
     IonicModule,
-    CreatorPageRoutingModule
+    CreatorPageRoutingModule,
+    NgxDatatableModule,
   ],
-  declarations: [CreatorPage]
+  declarations: [CreatorPage, CreateComponent, ListComponent],
 })
 export class CreatorPageModule {}

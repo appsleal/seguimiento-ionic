@@ -1,4 +1,5 @@
 import { Component, OnInit } from '@angular/core';
+import { Router } from '@angular/router';
 import { CreatorService } from '../services/creator.service';
 
 @Component({
@@ -7,18 +8,21 @@ import { CreatorService } from '../services/creator.service';
   styleUrls: ['./creator.page.scss'],
 })
 export class CreatorPage implements OnInit {
-  private file: File;
+  navigate = [
+    {
+      title: 'Creador',
+      url: 'create',
+    },
+    {
+      title: 'Lista',
+      url: 'list',
+    },
+  ];
+  constructor(private router: Router) {}
 
-  constructor(private service: CreatorService) {}
-
-  onFileChange(fileChangeEvent) {
-    this.file = fileChangeEvent.target.files[0];
+  navigateTo(url: string) {
+    this.router.navigateByUrl('/creator/' + url);
   }
 
-  submitForm() {
-    this.service.uploadFile(this.file).subscribe((res) => {
-      console.log(res);
-    });
-  }
   ngOnInit() {}
 }

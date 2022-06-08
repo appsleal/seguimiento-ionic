@@ -1,0 +1,15 @@
+<div style="height: 100%; display: flex; align-items: center; justify-content: center;">
+  <ion-card>
+    <ion-card-header>
+      <ion-card-title>
+        <h1>Creador de Archivos</h1>
+      </ion-card-title>
+    </ion-card-header>
+    <ion-card-content>
+      <ion-item lines="none">
+        <input type="file" (change)="onFileChange($event)" />
+      </ion-item>
+      <ion-button color="primary" expand="block" (click)="submitForm()">Subir</ion-button>
+    </ion-card-content>
+  </ion-card>
+</div>

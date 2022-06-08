@@ -5,19 +5,17 @@
 </ion-header>
 
 <ion-content>
-    <div *ngIf="rol==1">
-      <ion-item>
-        <input type="file" (change)="onFileChange($event)" />
-      </ion-item>
-      <ion-button color="primary" expand="full" (click)="submitForm()"
-        >Upload</ion-button
-      >
-    </div>
+  <div *ngIf="rol===1">
+    <ion-item>
+      <input type="file" (change)="onFileChange($event)" />
+    </ion-item>
+    <ion-button color="primary" expand="full" (click)="submitForm()">Upload</ion-button>
+  </div>
 
-    <div>
+  <div>
 
-      <ngx-datatable #table class="material" [columns]="columns" [columnMode]="ColumnMode.force" [headerHeight]="50"
-        [footerHeight]="50" rowHeight="auto" [limit]="10" [rows]="rows">
-      </ngx-datatable>
+    <ngx-datatable #table class="material striped" [columns]="columns" [columnMode]="columnMode.force"
+      [headerHeight]="50" [footerHeight]="50" rowHeight="auto" [limit]="10" [rows]="rows">
+    </ngx-datatable>
   </div>
 </ion-content>

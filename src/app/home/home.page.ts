@@ -1,3 +1,4 @@
+/* eslint-disable @typescript-eslint/dot-notation */
 import { Component, OnInit } from '@angular/core';
 import { FormBuilder, FormGroup, Validators } from '@angular/forms';
 import { HttpClient } from '@angular/common/http';
@@ -13,10 +14,20 @@ import { Storage } from '@ionic/storage';
 export class HomePage implements OnInit {
   myForm: FormGroup;
   submitted = false;
-  correo = "appsleal@gmail.com";
-  password = "masternes1997";
+  correo = 'appsleal@gmail.com';
+  password = 'masternes1997';
 
-  constructor(public formBuilder: FormBuilder, public httpClient: HttpClient,public toastController: ToastController, public router: Router, private storage: Storage) {}
+  constructor(
+    public formBuilder: FormBuilder,
+    public httpClient: HttpClient,
+    public toastController: ToastController,
+    public router: Router,
+    private storage: Storage
+  ) {}
+
+  get errorControl() {
+    return this.myForm.controls;
+  }
 
   ngOnInit(): void {
     this.myForm = this.formBuilder.group({
@@ -31,14 +42,10 @@ export class HomePage implements OnInit {
     });
   }
 
-  get errorControl() {
-    return this.myForm.controls;
-  }
-
   async presentToast(text) {
     const toast = await this.toastController.create({
       message: text,
-      duration: 2000
+      duration: 2000,
     });
     toast.present();
   }
@@ -46,18 +53,21 @@ export class HomePage implements OnInit {
   submitForm() {
     this.submitted = true;
 
-    this.httpClient.post("http://localhost:4001/api/user/login",this.myForm.value).subscribe(res=>{
-      if(res["token"]){
-        this.presentToast("Ingresado exitosamente");
-        this.storage.set("token",res["token"]);
-        this.router.navigateByUrl("/home/main-page")
-      }else{
-        this.presentToast("correo contraseña errada");
-      }
-    },(err)=>{
-      this.presentToast("correo contraseña errada");
-    })
-
-
+    this.httpClient
+      .post('http://localhost:4001/api/user/login', this.myForm.value)
+      .subscribe(
+        (res) => {
+          if (res['token']) {
+            this.presentToast('Ingresado exitosamente');
+            this.storage.set('token', res['token']);
+            this.router.navigateByUrl('/main-page');
+          } else {
+            this.presentToast('correo contraseña errada');
+          }
+        },
+        (err) => {
+          this.presentToast('correo contraseña errada');
+        }
+      );
   }
 }

@@ -7,7 +7,6 @@ import { IonicModule } from '@ionic/angular';
 import { MainPagePageRoutingModule } from './main-page-routing.module';
 
 import { MainPagePage } from './main-page.page';
-import jwt_decode from 'jwt-decode';
 import { NgxDatatableModule } from '@swimlane/ngx-datatable';
 
 @NgModule({
@@ -16,8 +15,8 @@ import { NgxDatatableModule } from '@swimlane/ngx-datatable';
     FormsModule,
     IonicModule,
     MainPagePageRoutingModule,
-    NgxDatatableModule
+    NgxDatatableModule,
   ],
-  declarations: [MainPagePage]
+  declarations: [MainPagePage],
 })
 export class MainPagePageModule {}

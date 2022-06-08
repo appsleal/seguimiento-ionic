@@ -1,0 +1,12 @@
+<ion-header>
+  <ion-toolbar>
+    <ion-title>creator</ion-title>
+  </ion-toolbar>
+</ion-header>
+
+<ion-content>
+  <ion-item>
+    <input type="file" (change)="onFileChange($event)" />
+  </ion-item>
+  <ion-button color="primary" expand="full" (click)="submitForm()">Upload</ion-button>
+</ion-content>

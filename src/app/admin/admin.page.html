@@ -4,7 +4,7 @@
       <ion-title>admin gato</ion-title>
     </ion-toolbar>
   </ion-header>
-  
+
   <ion-content>
     <ion-split-pane contentId="main">
       <!--  the side menu  -->
@@ -16,15 +16,17 @@
         </ion-header>
         <ion-content color="light">
           <ion-list *ngFor="let pages of navigate">
-              <ion-item [routerLink]="pages.url" routerDirection="forward">
-                {{pages.title}}
-              </ion-item>
+            <ion-item [routerLink]="pages.url" routerDirection="forward">
+              {{pages.title}}
+            </ion-item>
           </ion-list>
         </ion-content>
       </ion-menu>
-  
+
       <!-- the main content -->
-      <ion-router-outlet id="main"></ion-router-outlet>
+      <ion-router-outlet id="main">
+
+      </ion-router-outlet>
     </ion-split-pane>
   </ion-content>
 </ion-app>

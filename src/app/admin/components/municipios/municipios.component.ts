@@ -9,20 +9,16 @@ import { ColumnMode, DatatableComponent } from '@swimlane/ngx-datatable';
   styleUrls: ['./municipios.component.scss'],
 })
 export class MunicipiosComponent implements OnInit {
-
-  constructor(public routerOutlet: IonRouterOutlet, private router: Router) { }
   @ViewChild(DatatableComponent) table: DatatableComponent;
   rows = [];
   temp = [];
   columnMode = ColumnMode;
-  columns = [
-    { prop: 'Id' },
-    { name: 'Nombre Municipio' },
-  ];
+  columns = [{ prop: 'Id' }, { name: 'Nombre Municipio' }];
+  constructor(public routerOutlet: IonRouterOutlet, private router: Router) {}
 
-  ngOnInit() { }
+  ngOnInit() {}
 
   goBack() {
-    this.router.navigateByUrl('/admin')
+    this.router.navigateByUrl('/admin');
   }
 }

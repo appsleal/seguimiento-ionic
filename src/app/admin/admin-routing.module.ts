@@ -8,10 +8,12 @@ const routes: Routes = [
   {
     path: '',
     component: AdminPage,
-  },
-  {
-    path: 'municipios',
-    component: MunicipiosComponent,
+    children: [
+      {
+        path: 'municipios',
+        component: MunicipiosComponent,
+      },
+    ],
   },
 ];
 

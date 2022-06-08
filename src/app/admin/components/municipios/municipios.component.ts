@@ -1,4 +1,7 @@
-import { Component, OnInit } from '@angular/core';
+import { Component, OnInit, ViewChild } from '@angular/core';
+import { Router, RouterOutlet } from '@angular/router';
+import { IonRouterOutlet } from '@ionic/angular';
+import { ColumnMode, DatatableComponent } from '@swimlane/ngx-datatable';
 
 @Component({
   selector: 'app-municipios',
@@ -7,8 +10,19 @@ import { Component, OnInit } from '@angular/core';
 })
 export class MunicipiosComponent implements OnInit {
 
-  constructor() { }
+  constructor(public routerOutlet: IonRouterOutlet, private router: Router) { }
+  @ViewChild(DatatableComponent) table: DatatableComponent;
+  rows = [];
+  temp = [];
+  columnMode = ColumnMode;
+  columns = [
+    { prop: 'Id' },
+    { name: 'Nombre Municipio' },
+  ];
 
-  ngOnInit() {}
+  ngOnInit() { }
 
+  goBack() {
+    this.router.navigateByUrl('/admin')
+  }
 }

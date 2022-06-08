@@ -1,3 +1,18 @@
-<p>
-  municipios works!
-</p>
+<ion-header>
+  <ion-toolbar>
+    <ion-buttons slot="start">
+      <ion-back-button defaultHref="" (click)="goBack()">></ion-back-button>
+      <ion-title text-center>Municipios</ion-title>
+
+    </ion-buttons>
+  </ion-toolbar>
+</ion-header>
+
+<ion-content>
+  <div>
+
+    <ngx-datatable #table class="material striped" [columns]="columns" [columnMode]="columnMode.force"
+      [headerHeight]="50" [footerHeight]="50" rowHeight="auto" [limit]="10" [rows]="rows">
+    </ngx-datatable>
+  </div>
+</ion-content>

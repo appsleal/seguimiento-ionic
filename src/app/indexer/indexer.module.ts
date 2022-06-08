@@ -7,14 +7,26 @@ import { IonicModule } from '@ionic/angular';
 import { IndexerPageRoutingModule } from './indexer-routing.module';
 
 import { IndexerPage } from './indexer.page';
+import { CreateComponent } from './components/create/create.component';
+import { ListAvailableComponent } from './components/list-available/list-available.component';
+import { ListCompletedComponent } from './components/list-completed/list-completed.component';
+import { ListRejectedComponent } from './components/list-rejected/list-rejected.component';
+import { NgxDatatableModule } from '@swimlane/ngx-datatable';
 
 @NgModule({
   imports: [
     CommonModule,
     FormsModule,
     IonicModule,
-    IndexerPageRoutingModule
+    IndexerPageRoutingModule,
+    NgxDatatableModule,
   ],
-  declarations: [IndexerPage]
+  declarations: [
+    IndexerPage,
+    CreateComponent,
+    ListAvailableComponent,
+    ListCompletedComponent,
+    ListRejectedComponent,
+  ],
 })
 export class IndexerPageModule {}

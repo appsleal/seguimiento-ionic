@@ -12,21 +12,10 @@ import { AuthService } from '../services/auth.service';
 @Injectable({
   providedIn: 'root',
 })
-export class AuthGuard implements CanActivate {
+export class CreatorGuard implements CanActivate {
   constructor(public auth: AuthService, public router: Router) {}
-  // canActivate(
-  //   route: ActivatedRouteSnapshot,
-  //   state: RouterStateSnapshot
-  // ):
-  //   | Observable<boolean | UrlTree>
-  //   | Promise<boolean | UrlTree>
-  //   | boolean
-  //   | UrlTree {
-  //   return true;
-  // }
-
   canActivate(): boolean {
-    if (!this.auth.isAuthenticated()) {
+    if (this.auth.getRol() !== '1') {
       this.router.navigate(['/']);
       return false;
     }

@@ -5,7 +5,7 @@ import { Router } from '@angular/router';
 import { HotToastService } from '@ngneat/hot-toast';
 import { DB_URL } from 'src/environments/environment';
 import { JwtHelperService, JWT_OPTIONS } from '@auth0/angular-jwt';
-
+import jwt_decode from 'jwt-decode';
 @Injectable({
   providedIn: 'root',
 })
@@ -26,23 +26,21 @@ export class AuthService {
     return localStorage.getItem('token');
   }
 
+  getRol() {
+    const token = localStorage.getItem('token') ?? '';
+    const decoded = jwt_decode(token);
+    console.log({
+      decoded,
+    });
+    return decoded['usuario']['rol'] ?? decoded['usuario']['username']['rol'];
+  }
+
   public isAuthenticated(): boolean {
     const token = localStorage.getItem('token') ?? '';
     // Check whether the token is expired and return
     // true or false
 
     return !this.jwtHelper.isTokenExpired(token);
-  }
-
-  public canAccess() {
-    const token = localStorage.getItem('token') ?? '';
-    const decodedToken = this.jwtHelper.decodeToken(token);
-
-    const role = decodedToken['usuario']['rol'];
-    if (role === 'admin') {
-      return true;
-    }
-    return false;
   }
 
   login(user) {

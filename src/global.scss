@@ -30,3 +30,24 @@
 @import '~@swimlane/ngx-datatable/index.css';
 @import '~@swimlane/ngx-datatable/themes/material.scss';
 @import '~@swimlane/ngx-datatable/assets/icons.css';
+
+
+ion-modal.auto-height {
+    &.bottom {
+        align-items: flex-end;
+    }
+
+    --height: auto;
+
+    .ion-page {
+        position: relative;
+        display: block;
+        contain: content;
+
+        .inner-content {
+            max-height: 100vh;
+            overflow: auto;
+            padding: 10px;
+        }
+    }
+}

@@ -1,0 +1,85 @@
+<ion-header>
+  <ion-toolbar>
+    <ion-title class="ion-text-center">Mis Documentos Para Validar</ion-title>
+  </ion-toolbar>
+</ion-header>
+
+<ion-content>
+  <ion-card>
+    <ngx-datatable #table class="material striped" [columnMode]="columnMode.force" [headerHeight]="50"
+      [footerHeight]="50" rowHeight="auto" [limit]="10" [rows]="rows" [selected]="selected"
+      [selectionType]="selectionType.checkbox">
+      <ngx-datatable-column [width]="30" [sortable]="false" [canAutoResize]="false" [draggable]="false"
+        [resizeable]="false" [headerCheckboxable]="true" [checkboxable]="true">
+      </ngx-datatable-column>
+      <ngx-datatable-column name="Numero de Identificación" prop="ID">
+        <ng-template let-row="row" ngx-datatable-cell-template>
+          {{row.ID}}
+        </ng-template>
+      </ngx-datatable-column>
+      <ngx-datatable-column name="Número de documento" prop="numero_documento">
+        <ng-template let-row="row" ngx-datatable-cell-template>
+          {{row.numero_documento}}
+        </ng-template>
+      </ngx-datatable-column>
+      <ngx-datatable-column name="Fecha de creación" prop="creationDate">
+        <ng-template let-row="row" ngx-datatable-cell-template>
+          {{dateParse(row.creationDate)}}
+        </ng-template>
+      </ngx-datatable-column>
+      <ngx-datatable-column name="Rechazar" [sortable]="false">
+        <ng-template let-row="row" ngx-datatable-cell-template>
+
+          <ion-button color="danger" (click)="changeState(row.ID)">
+            <ion-icon name="trash"></ion-icon>
+          </ion-button>
+        </ng-template>
+      </ngx-datatable-column>
+    </ngx-datatable>
+    <ion-card-content>
+      <ion-button expand="block" color="success" (click)="validateDocuments()">Validar Documentos</ion-button>
+    </ion-card-content>
+  </ion-card>
+</ion-content>
+
+<ion-modal [isOpen]="modalController" (didDismiss)="changeState()" cssClass="auto-height">
+  <ng-template>
+    <div class="inner-content">
+
+      <ion-card>
+        <ion-card-header>
+          <ion-card-title>
+            <ion-label>
+              <h2>¿Está seguro que desea rechazar el documento?</h2>
+            </ion-label>
+          </ion-card-title>
+        </ion-card-header>
+        <ion-card-content>
+          <form [formGroup]="formGroup" (ngSubmit)="rejectDocuments()">
+            <ion-grid>
+              <ion-row>
+                <ion-col>
+
+                  <ion-item fill="outline">
+                    <ion-label position="floating">
+                      Comentarios
+                    </ion-label>
+                    <ion-input type="text" formControlName="comment"></ion-input>
+                  </ion-item>
+
+                </ion-col>
+              </ion-row>
+              <ion-row>
+                <ion-col>
+                  <ion-button type="submit" expand="block" color="danger">Rechazar</ion-button>
+                </ion-col>
+              </ion-row>
+            </ion-grid>
+          </form>
+
+
+        </ion-card-content>
+      </ion-card>
+    </div>
+  </ng-template>
+</ion-modal>

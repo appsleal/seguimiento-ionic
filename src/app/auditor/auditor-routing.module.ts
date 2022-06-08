@@ -2,12 +2,24 @@ import { NgModule } from '@angular/core';
 import { Routes, RouterModule } from '@angular/router';
 
 import { AuditorPage } from './auditor.page';
+import { ListToValidateComponent } from './components/list-to-validate/list-to-validate.component';
+import { ListValidatedComponent } from './components/list-validated/list-validated.component';
 
 const routes: Routes = [
   {
     path: '',
-    component: AuditorPage
-  }
+    component: AuditorPage,
+    children: [
+      {
+        path: 'list-validated',
+        component: ListValidatedComponent,
+      },
+      {
+        path: 'list-to-validate',
+        component: ListToValidateComponent,
+      },
+    ],
+  },
 ];
 
 @NgModule({

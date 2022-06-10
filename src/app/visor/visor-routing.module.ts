@@ -1,7 +1,8 @@
 import { NgModule } from '@angular/core';
 import { Routes, RouterModule } from '@angular/router';
-import { ListDocumentsComponent } from './components/list-documents/list-documents.component';
-import { PieChartComponent } from './components/pie-chart/pie-chart.component';
+import { GraphicSummaryComponent } from './components/graphic-summary/graphic-summary.component';
+
+import { ListExpedientsComponent } from './components/list-expedients/list-expedients.component';
 
 import { VisorPage } from './visor.page';
 
@@ -11,12 +12,12 @@ const routes: Routes = [
     component: VisorPage,
     children: [
       {
-        path: 'list-documents',
-        component: ListDocumentsComponent,
+        path: 'list-expedients',
+        component: ListExpedientsComponent,
       },
       {
-        path: 'pie-chart',
-        component: PieChartComponent,
+        path: 'graphic-summary',
+        component: GraphicSummaryComponent,
       },
     ],
   },

@@ -8,12 +8,22 @@ import { VisorPageRoutingModule } from './visor-routing.module';
 import { NgChartsModule } from 'ng2-charts';
 
 import { VisorPage } from './visor.page';
-import { ListDocumentsComponent } from './components/list-documents/list-documents.component';
-import { PieChartComponent } from './components/pie-chart/pie-chart.component';
+
 import { NgxDatatableModule } from '@swimlane/ngx-datatable';
+import { GraphicSummaryComponent } from './components/graphic-summary/graphic-summary.component';
+import { ListExpedientsComponent } from './components/list-expedients/list-expedients.component';
+import { CsvModule } from '@ctrl/ngx-csv';
 
 @NgModule({
-  imports: [CommonModule, FormsModule, IonicModule, VisorPageRoutingModule,NgChartsModule,NgxDatatableModule],
-  declarations: [VisorPage, ListDocumentsComponent, PieChartComponent],
+  imports: [
+    CommonModule,
+    FormsModule,
+    IonicModule,
+    VisorPageRoutingModule,
+    NgChartsModule,
+    NgxDatatableModule,
+    CsvModule,
+  ],
+  declarations: [VisorPage, ListExpedientsComponent, GraphicSummaryComponent],
 })
 export class VisorPageModule {}

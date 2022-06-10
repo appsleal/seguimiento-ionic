@@ -9,12 +9,12 @@ import { Router } from '@angular/router';
 export class VisorPage implements OnInit {
   navigate = [
     {
-      title: 'Lista de documentos',
-      url: 'list-documents',
+      title: 'Lista de expedientes',
+      url: 'list-expedients',
     },
     {
-      title: 'Diagrama de Pastel',
-      url: 'pie-chart',
+      title: 'Resumen Grafico',
+      url: 'graphic-summary',
     },
   ];
   constructor(private router: Router) {}

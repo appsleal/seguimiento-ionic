@@ -1,6 +1,6 @@
 <ion-header>
   <ion-toolbar>
-    <ion-title class="ion-text-center">Mis Documentos Validados</ion-title>
+    <ion-title class="ion-text-center">Mis Expedientes Validados</ion-title>
   </ion-toolbar>
 </ion-header>
 
@@ -18,7 +18,7 @@
           {{row.numero_documento}}
         </ng-template>
       </ngx-datatable-column>
-      <ngx-datatable-column name="Creado por" prop="usuario_creador">
+      <ngx-datatable-column name="Entregado por" prop="usuario_creador">
         <ng-template let-row="row" ngx-datatable-cell-template>
           {{row.usuario_creador}}
         </ng-template>
@@ -34,5 +34,10 @@
         </ng-template>
       </ngx-datatable-column>
     </ngx-datatable>
+    <ion-card-content>
+      <ion-button expand="block" color="success" csvLink [data]="rows">Exportar a CSV</ion-button>
+    </ion-card-content>
   </ion-card>
+
+
 </ion-content>

@@ -10,6 +10,7 @@ const routes: Routes = [
     path: '',
     component: AuditorPage,
     children: [
+      { path: '', pathMatch: 'full', redirectTo: 'list-to-validate' },
       {
         path: 'list-validated',
         component: ListValidatedComponent,

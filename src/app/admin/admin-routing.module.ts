@@ -10,6 +10,7 @@ const routes: Routes = [
     path: '',
     component: AdminPage,
     children: [
+      { path: '', pathMatch: 'full', redirectTo: 'municipios' },
       {
         path: 'municipios',
         component: MunicipiosComponent,

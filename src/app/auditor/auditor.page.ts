@@ -9,11 +9,11 @@ import { Router } from '@angular/router';
 export class AuditorPage implements OnInit {
   navigate = [
     {
-      title: 'Lista de documentos a validar',
+      title: 'Lista de expedientes a validar',
       url: 'list-to-validate',
     },
     {
-      title: 'Lista de documentos validados',
+      title: 'Lista de expedientes validados',
       url: 'list-validated',
     },
   ];
@@ -21,6 +21,12 @@ export class AuditorPage implements OnInit {
 
   navigateTo(url: string) {
     this.router.navigateByUrl('/auditor/' + url);
+  }
+  getCurrentUrl(currentUrl: string) {
+    const url = this.router.url;
+    const subUrl = url.split('/')[2];
+
+    return subUrl === currentUrl ? 'sideNav__active' : '';
   }
 
   ngOnInit() {}

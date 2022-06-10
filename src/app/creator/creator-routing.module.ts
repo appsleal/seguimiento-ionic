@@ -10,6 +10,7 @@ const routes: Routes = [
     path: '',
     component: CreatorPage,
     children: [
+      { path: '', pathMatch: 'full', redirectTo: 'create' },
       {
         path: 'create',
         component: CreateComponent,

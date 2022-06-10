@@ -53,7 +53,7 @@
             <ion-col>
               <ion-item fill="outline">
                 <ion-label position="floating">Municipio</ion-label>
-                <ion-select formControlName="rol" multiple="false" cancelText="Cancel" okText="Okay!">
+                <ion-select formControlName="municipio" multiple="false" cancelText="Cancel" okText="Okay!">
                   <ion-select-option *ngFor="let municipio of  municipios" value={{municipio.ID}}>{{municipio.NOMBRE}}
                   </ion-select-option>
 
@@ -63,7 +63,8 @@
           </ion-row>
         </ion-grid>
 
-        <ion-button color="primary" expand="block" type="submit" [disabled]="formGroup.invalid">Crear Usuario</ion-button>
+        <ion-button color="primary" expand="block" type="submit" [disabled]="formGroup.invalid">Crear Usuario
+        </ion-button>
       </form>
     </ion-card-content>
   </ion-card>

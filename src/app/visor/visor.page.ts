@@ -22,6 +22,12 @@ export class VisorPage implements OnInit {
   navigateTo(url: string) {
     this.router.navigateByUrl('/visor/' + url);
   }
+  getCurrentUrl(currentUrl: string) {
+    const url = this.router.url;
+    const subUrl = url.split('/')[2];
+
+    return subUrl === currentUrl ? 'sideNav__active' : '';
+  }
 
   ngOnInit() {}
 }

@@ -24,7 +24,8 @@ export class AdminService {
   createMunicipio(municipio) {
     return this.http
       .post(DB_URL + '/municipios', {
-        NOMBRE: municipio,
+        NOMBRE: municipio.name,
+        CUPO: municipio.cuota,
       })
       .pipe(
         this.toast.observe({

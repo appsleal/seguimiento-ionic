@@ -23,5 +23,12 @@ export class AdminPage implements OnInit {
     this.router.navigateByUrl('/admin/' + url);
   }
 
+  getCurrentUrl(currentUrl: string) {
+    const url = this.router.url;
+    const subUrl = url.split('/')[2];
+
+    return subUrl === currentUrl ? 'sideNav__active' : '';
+  }
+
   ngOnInit() {}
 }

@@ -11,6 +11,8 @@ const routes: Routes = [
     path: '',
     component: VisorPage,
     children: [
+      { path: '', pathMatch: 'full', redirectTo: 'list-expedients' },
+
       {
         path: 'list-expedients',
         component: ListExpedientsComponent,

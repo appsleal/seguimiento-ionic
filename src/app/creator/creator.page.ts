@@ -23,6 +23,11 @@ export class CreatorPage implements OnInit {
   navigateTo(url: string) {
     this.router.navigateByUrl('/creator/' + url);
   }
+  getCurrentUrl(currentUrl: string) {
+    const url = this.router.url;
+    const subUrl = url.split('/')[2];
 
+    return subUrl === currentUrl ? 'sideNav__active' : '';
+  }
   ngOnInit() {}
 }

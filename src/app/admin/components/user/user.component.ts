@@ -1,6 +1,6 @@
-/* eslint-disable @typescript-eslint/dot-notation */
 import { Component, OnInit } from '@angular/core';
 import { FormBuilder, FormGroup, Validators } from '@angular/forms';
+import { ListaMunicipios } from 'src/app/interfaces/lista-municipios';
 import { AdminService } from 'src/app/services/admin.service';
 
 @Component({
@@ -36,8 +36,8 @@ export class UserComponent implements OnInit {
   ];
 
   constructor(private formBuilder: FormBuilder, private service: AdminService) {
-    this.service.getMunicipios().subscribe((data) => {
-      this.municipios = [...data['municipio']];
+    this.service.getMunicipios().subscribe((data: ListaMunicipios) => {
+      this.municipios = [...data.municipio];
       console.log({
         municipios: this.municipios,
       });
@@ -45,9 +45,13 @@ export class UserComponent implements OnInit {
   }
 
   createUser() {
-    this.service.createUser(this.formGroup.value).subscribe((data) => {
-      console.log(data);
+    console.log({
+      usuario: this.formGroup.value,
     });
+
+    // this.service.createUser(this.formGroup.value).subscribe((data) => {
+    //   console.log(data);
+    // });
   }
 
   ngOnInit() {

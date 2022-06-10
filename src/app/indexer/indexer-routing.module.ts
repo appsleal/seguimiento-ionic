@@ -12,6 +12,7 @@ const routes: Routes = [
     path: '',
     component: IndexerPage,
     children: [
+      { path: '', pathMatch: 'full', redirectTo: 'create' },
       {
         path: 'create',
         component: CreateComponent,

@@ -18,6 +18,11 @@
           {{row.NOMBRE}}
         </ng-template>
       </ngx-datatable-column>
+      <ngx-datatable-column name="Cupo" prop="CUPO">
+        <ng-template let-row="row" ngx-datatable-cell-template>
+          {{row.CUPO}}
+        </ng-template>
+      </ngx-datatable-column>
       <ngx-datatable-column name="Fecha de creación" prop="creationDate">
         <ng-template let-row="row" ngx-datatable-cell-template>
           {{dateParse(row.creationDate)}}
@@ -59,6 +64,16 @@
                       Nombre
                     </ion-label>
                     <ion-input type="text" formControlName="name"></ion-input>
+                  </ion-item>
+                </ion-col>
+              </ion-row>
+              <ion-row>
+                <ion-col>
+                  <ion-item fill="outline">
+                    <ion-label position="floating">
+                      Cuota
+                    </ion-label>
+                    <ion-input type="number" formControlName="cuota"></ion-input>
                   </ion-item>
                 </ion-col>
               </ion-row>

@@ -9,20 +9,20 @@ import { Router } from '@angular/router';
 export class IndexerPage implements OnInit {
   navigate = [
     {
-      title: 'Digitalizar documentos',
+      title: 'Digitalizar expedientes',
       url: 'create',
     },
     {
-      title: 'Lista de documentos Disponibles',
+      title: 'Lista de expedientes Disponibles',
       url: 'list-available',
     },
     {
-      title: 'Lista de documentos Completados',
+      title: 'Lista de expedientes Completados',
       url: 'list-completed',
     },
 
     {
-      title: 'Lista de documentos Rechazados',
+      title: 'Lista de expedientes Rechazados',
       url: 'list-rejected',
     },
   ];
@@ -31,5 +31,12 @@ export class IndexerPage implements OnInit {
   ngOnInit() {}
   navigateTo(url: string) {
     this.router.navigateByUrl('/indexer/' + url);
+  }
+
+  getCurrentUrl(currentUrl: string) {
+    const url = this.router.url;
+    const subUrl = url.split('/')[2];
+
+    return subUrl === currentUrl ? 'sideNav__active' : '';
   }
 }

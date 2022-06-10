@@ -47,7 +47,27 @@ ion-modal.auto-height {
         .inner-content {
             max-height: 100vh;
             overflow: auto;
-            padding: 10px;
         }
     }
+}
+
+
+
+.sideNav {
+    padding: 0;
+
+    ion-item {
+        width: 100%;
+
+    }
+
+    &__active {
+        --border-color: var(--ion-color-primary);
+        --border-style: none solid;
+        --border-width: 0px 5px 0px 5px;
+    }
+}
+
+.menu {
+    max-width: 300px !important;
 }

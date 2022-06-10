@@ -45,13 +45,7 @@ export class UserComponent implements OnInit {
   }
 
   createUser() {
-    console.log({
-      usuario: this.formGroup.value,
-    });
-
-    // this.service.createUser(this.formGroup.value).subscribe((data) => {
-    //   console.log(data);
-    // });
+    this.service.createUser(this.formGroup.value);
   }
 
   ngOnInit() {

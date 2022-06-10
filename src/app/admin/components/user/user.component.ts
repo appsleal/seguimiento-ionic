@@ -1,5 +1,6 @@
-import { Component, OnInit } from '@angular/core';
+import { Component, OnInit, ViewChild } from '@angular/core';
 import { FormBuilder, FormGroup, Validators } from '@angular/forms';
+import { DatatableComponent, ColumnMode } from '@swimlane/ngx-datatable';
 import { ListaMunicipios } from 'src/app/interfaces/lista-municipios';
 import { AdminService } from 'src/app/services/admin.service';
 
@@ -9,7 +10,13 @@ import { AdminService } from 'src/app/services/admin.service';
   styleUrls: ['./user.component.scss'],
 })
 export class UserComponent implements OnInit {
+  @ViewChild(DatatableComponent) table: DatatableComponent;
+  rows: any[] = [];
+  temp: any[] = [];
+  modalController = false;
+
   formGroup: FormGroup;
+  columnMode = ColumnMode;
   municipios: any;
 
   roles = [
@@ -42,16 +49,32 @@ export class UserComponent implements OnInit {
         municipios: this.municipios,
       });
     });
+
+    this.service.listUser().subscribe((data: any) => {
+      this.rows = data;
+      this.temp = [...data];
+    });
   }
 
+  changeState = () => {
+    this.modalController = !this.modalController;
+  };
   createUser() {
-    this.service.createUser(this.formGroup.value);
+    this.service.createUser(this.formGroup.value).subscribe((_data) => {
+      setTimeout(() => {
+        window.location.reload();
+      }, 800);
+    });
   }
 
   ngOnInit() {
     this.formGroup = this.formBuilder.group({
       usuario: ['', [Validators.required]],
-      correo: ['', [Validators.required]],
+      correo: [
+        '',
+        [Validators.required],
+        Validators.pattern('[a-z0-9._%+-]+@[a-z0-9.-]+.[a-z]{2,3}$'),
+      ],
       password: ['', [Validators.required]],
       rol: [0, [Validators.required]],
       municipio: [0, [Validators.required]],

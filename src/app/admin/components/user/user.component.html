@@ -1,72 +1,127 @@
-<div style="height: 100%; display: flex; align-items: center; justify-content: center;">
+<ion-header>
+  <ion-toolbar>
+    <ion-title class="ion-text-center">Municipios</ion-title>
+  </ion-toolbar>
+</ion-header>
+
+<ion-content>
   <ion-card>
-    <ion-card-header>
-      <ion-card-title>
-        <h1>Creador de usuarios</h1>
-      </ion-card-title>
-    </ion-card-header>
+    <ngx-datatable #table class="material striped" [columnMode]="columnMode.force" [headerHeight]="50"
+      [footerHeight]="50" rowHeight="auto" [limit]="10" [rows]="rows">
+      <ngx-datatable-column name="Numero de Identificación" prop="ID">
+        <ng-template let-row="row" ngx-datatable-cell-template>
+          {{row.ID}}
+        </ng-template>
+      </ngx-datatable-column>
+      <ngx-datatable-column name="Correo" prop="correo">
+        <ng-template let-row="row" ngx-datatable-cell-template>
+          {{row.correo}}
+        </ng-template>
+      </ngx-datatable-column>
+      <ngx-datatable-column name="Usuario" prop="usuario">
+        <ng-template let-row="row" ngx-datatable-cell-template>
+          {{row.usuario}}
+        </ng-template>
+      </ngx-datatable-column>
+      <ngx-datatable-column name="Rol" prop="rol">
+        <ng-template let-row="row" ngx-datatable-cell-template>
+          {{row.rol}}
+        </ng-template>
+      </ngx-datatable-column>
+
+    </ngx-datatable>
     <ion-card-content>
-      <form [formGroup]="formGroup" (ngSubmit)="createUser()">
-        <ion-grid>
-          <ion-row>
-            <ion-col>
-              <ion-item fill="outline">
-                <ion-label position="floating">
-                  Nombre de Usuario
-                </ion-label>
-                <ion-input type="text" formControlName="usuario"></ion-input>
-              </ion-item>
-            </ion-col>
-          </ion-row>
-          <ion-row>
-            <ion-col>
-              <ion-item fill="outline">
-                <ion-label position="floating">
-                  Correo Electronico
-                </ion-label>
-                <ion-input type="text" formControlName="correo"></ion-input>
-              </ion-item>
-            </ion-col>
-          </ion-row>
-          <ion-row>
-            <ion-col>
-              <ion-item fill="outline">
-                <ion-label position="floating">
-                  Contraseña
-                </ion-label>
-                <ion-input type="text" formControlName="password"></ion-input>
-              </ion-item>
-            </ion-col>
-          </ion-row>
-          <ion-row>
-            <ion-col>
-              <ion-item fill="outline">
-                <ion-label position="floating">Rol</ion-label>
-                <ion-select formControlName="rol" multiple="false" cancelText="Cancel" okText="Okay!">
-                  <ion-select-option *ngFor="let rol of roles" value={{rol.id}}>{{rol.nombre}}</ion-select-option>
-
-                </ion-select>
-              </ion-item>
-            </ion-col>
-          </ion-row>
-          <ion-row>
-            <ion-col>
-              <ion-item fill="outline">
-                <ion-label position="floating">Municipio</ion-label>
-                <ion-select formControlName="municipio" multiple="false" cancelText="Cancel" okText="Okay!">
-                  <ion-select-option *ngFor="let municipio of  municipios" value={{municipio.ID}}>{{municipio.NOMBRE}}
-                  </ion-select-option>
-
-                </ion-select>
-              </ion-item>
-            </ion-col>
-          </ion-row>
-        </ion-grid>
-
-        <ion-button color="primary" expand="block" type="submit" [disabled]="formGroup.invalid">Crear Usuario
-        </ion-button>
-      </form>
+      <ion-button expand="block" color="success" (click)="changeState()">Crear Usuario</ion-button>
     </ion-card-content>
   </ion-card>
 
-</div>
+</ion-content>
+
+
+<ion-modal [isOpen]="modalController" (didDismiss)="changeState()" cssClass="auto-height">
+  <ng-template>
+
+    <div class="inner-content">
+      <ion-card>
+        <ion-card-header>
+          <ion-card-title>
+            <ion-label>
+              <h2>Creador de usuarios</h2>
+            </ion-label>
+          </ion-card-title>
+        </ion-card-header>
+        <ion-card-content>
+          <form [formGroup]="formGroup" (ngSubmit)="createUser()">
+            <ion-grid>
+              <ion-row>
+                <ion-col>
+                  <ion-item fill="outline">
+                    <ion-label position="floating">
+                      Nombre de Usuario
+                    </ion-label>
+                    <ion-input type="text" formControlName="usuario"></ion-input>
+                  </ion-item>
+                </ion-col>
+              </ion-row>
+
+              <ion-row>
+                <ion-col>
+                  <ion-item fill="outline">
+                    <ion-label position="floating">
+                      Correo Electronico
+                    </ion-label>
+                    <ion-input type="text" formControlName="correo"></ion-input>
+                  </ion-item>
+                </ion-col>
+              </ion-row>
+
+              <ion-row>
+                <ion-col>
+                  <ion-item fill="outline">
+                    <ion-label position="floating">
+                      Contraseña
+                    </ion-label>
+                    <ion-input type="text" formControlName="password"></ion-input>
+                  </ion-item>
+                </ion-col>
+              </ion-row>
+
+              <ion-row>
+                <ion-col>
+                  <ion-item fill="outline">
+                    <ion-label position="floating">Rol</ion-label>
+                    <ion-select formControlName="rol" multiple="false" cancelText="Cancel" okText="Okay!">
+                      <ion-select-option *ngFor="let rol of roles" value={{rol.id}}>{{rol.nombre}}</ion-select-option>
+
+                    </ion-select>
+                  </ion-item>
+                </ion-col>
+              </ion-row>
+              <ion-row>
+                <ion-col>
+                  <ion-item fill="outline">
+                    <ion-label position="floating">Municipio</ion-label>
+                    <ion-select formControlName="municipio" multiple="false" cancelText="Cancel" okText="Okay!">
+                      <ion-select-option *ngFor="let municipio of  municipios" value={{municipio.ID}}>
+                        {{municipio.NOMBRE}}
+                      </ion-select-option>
+                    </ion-select>
+                  </ion-item>
+                </ion-col>
+              </ion-row>
+
+
+              <ion-row>
+                <ion-col>
+                  <ion-button type="submit" expand="block" color="success">Crear</ion-button>
+                </ion-col>
+              </ion-row>
+            </ion-grid>
+          </form>
+        </ion-card-content>
+      </ion-card>
+    </div>
+
+
+  </ng-template>
+</ion-modal>

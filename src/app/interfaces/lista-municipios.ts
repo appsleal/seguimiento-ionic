@@ -7,6 +7,6 @@ export interface Municipio {
   ID: number;
   NOMBRE: string;
   CUPO: number;
-  creationDate: Date;
-  updatedAt: Date;
+  creationDate?: Date;
+  updatedAt?: Date;
 }

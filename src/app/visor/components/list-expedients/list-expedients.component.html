@@ -18,6 +18,11 @@
           {{row.numero_documento}}
         </ng-template>
       </ngx-datatable-column>
+      <ngx-datatable-column name="Nombre Municipio" prop="nombre_municipio">
+        <ng-template let-row="row" ngx-datatable-cell-template>
+          {{row.nombre_municipio}}
+        </ng-template>
+      </ngx-datatable-column>
       <ngx-datatable-column name="Entregado por" prop="usuario_creador">
         <ng-template let-row="row" ngx-datatable-cell-template>
           {{row.usuario_creador}}

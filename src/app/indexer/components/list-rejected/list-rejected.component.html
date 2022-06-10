@@ -5,6 +5,16 @@
 </ion-header>
 
 <ion-content>
+  <ion-grid>
+    <ion-row>
+      <ion-col size="2"></ion-col>
+      <ion-col size="8">
+        <ion-searchbar class="product__search" placeholder="Archivo" (ionChange)="filterDatatable($event)">
+        </ion-searchbar>
+      </ion-col>
+      <ion-col size="2"></ion-col>
+    </ion-row>
+  </ion-grid>
   <ion-card>
     <ngx-datatable #table class="material striped" [columnMode]="columnMode.force" [headerHeight]="50"
       [footerHeight]="50" rowHeight="auto" [limit]="10" [rows]="rows">
@@ -18,9 +28,16 @@
           {{row.numero_documento}}
         </ng-template>
       </ngx-datatable-column>
-      <ngx-datatable-column name="Fecha de creación" prop="creationDate">
+      <ngx-datatable-column name="Razon" prop="comentarios">
         <ng-template let-row="row" ngx-datatable-cell-template>
-          {{dateParse(row.creationDate)}}
+          {{row.comentarios}}
+        </ng-template>
+      </ngx-datatable-column>
+      <ngx-datatable-column name="Arreglado" [sortable]="false">
+        <ng-template let-row="row" ngx-datatable-cell-template>
+          <ion-button color="success" (click)="changeState(row.ID)">
+            <ion-icon name="checkmark-outline"></ion-icon>
+          </ion-button>
         </ng-template>
       </ngx-datatable-column>
     </ngx-datatable>

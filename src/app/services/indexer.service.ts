@@ -69,7 +69,20 @@ export class IndexerService {
         })
       );
   }
-
+  arreglar(id) {
+    return this.http.post(DB_URL + this.section + '/arreglado',{
+      "id":id
+    }, {
+      headers: this.headers,
+    }).pipe(
+      this.toast.observe({
+        loading: 'Espere un momento...',
+        success: 'Documento Marcado como solucionado',
+        error:
+          'Error marcando documento como solucionado',
+      })
+    );
+  }
   getListRejected() {
     return this.http.get(DB_URL + this.section + '/digitalizadorErrores', {
       headers: this.headers,

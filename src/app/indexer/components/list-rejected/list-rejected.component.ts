@@ -25,5 +25,29 @@ export class ListRejectedComponent implements OnInit {
     return new Date(date).toLocaleDateString();
   }
 
+
+  changeState(id){
+    this.service.arreglar(id).subscribe((data) => {
+      setTimeout(() => {
+        window.location.reload();
+      }, 800);
+    });
+    
+  }
+
+  // filters results
+  filterDatatable(event) {
+    // get the value of the key pressed and make it lowercase
+    const val = event.target.value.toLowerCase();
+
+    const temp = this.temp.filter(
+      (d) => String(d.numero_documento).indexOf(val) !== -1 || !val
+    );
+
+    // update the rows
+    this.rows = temp;
+    // Whenever the filter changes, always go back to the first page
+    this.table.offset = 0;
+  }
   ngOnInit() {}
 }

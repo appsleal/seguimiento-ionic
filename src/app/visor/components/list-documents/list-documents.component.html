@@ -1,3 +1,38 @@
-<p>
-  list-documents works!
-</p>
+<ion-header>
+  <ion-toolbar>
+    <ion-title class="ion-text-center">Mis Documentos Validados</ion-title>
+  </ion-toolbar>
+</ion-header>
+
+<ion-content>
+  <ion-card>
+    <ngx-datatable #table class="material striped" [columnMode]="columnMode.force" [headerHeight]="50"
+      [footerHeight]="50" rowHeight="auto" [limit]="10" [rows]="rows">
+      <ngx-datatable-column name="Numero de Identificación" prop="ID">
+        <ng-template let-row="row" ngx-datatable-cell-template>
+          {{row.ID}}
+        </ng-template>
+      </ngx-datatable-column>
+      <ngx-datatable-column name="Número de documento" prop="numero_documento">
+        <ng-template let-row="row" ngx-datatable-cell-template>
+          {{row.numero_documento}}
+        </ng-template>
+      </ngx-datatable-column>
+      <ngx-datatable-column name="Creado por" prop="usuario_creador">
+        <ng-template let-row="row" ngx-datatable-cell-template>
+          {{row.usuario_creador}}
+        </ng-template>
+      </ngx-datatable-column>
+      <ngx-datatable-column name="Digitalizado por" prop="usuario_digitalizador">
+        <ng-template let-row="row" ngx-datatable-cell-template>
+          {{row.usuario_digitalizador}}
+        </ng-template>
+      </ngx-datatable-column>
+      <ngx-datatable-column name="Validado por" prop="usuario_validador">
+        <ng-template let-row="row" ngx-datatable-cell-template>
+          {{row.usuario_validador}}
+        </ng-template>
+      </ngx-datatable-column>
+    </ngx-datatable>
+  </ion-card>
+</ion-content>

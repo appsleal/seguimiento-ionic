@@ -1,5 +1,6 @@
 import { NgModule } from '@angular/core';
 import { Routes, RouterModule } from '@angular/router';
+import { VisorGuard } from '../guards/visor.guard';
 import { GraphicSummaryComponent } from './components/graphic-summary/graphic-summary.component';
 
 import { ListExpedientsComponent } from './components/list-expedients/list-expedients.component';
@@ -16,10 +17,14 @@ const routes: Routes = [
       {
         path: 'list-expedients',
         component: ListExpedientsComponent,
+        canActivate:[VisorGuard]
+
       },
       {
         path: 'graphic-summary',
         component: GraphicSummaryComponent,
+        canActivate:[VisorGuard]
+
       },
     ],
   },

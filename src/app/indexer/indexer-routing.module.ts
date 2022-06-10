@@ -1,5 +1,6 @@
 import { NgModule } from '@angular/core';
 import { Routes, RouterModule } from '@angular/router';
+import { IndexerGuard } from '../guards/indexer.guard';
 import { CreateComponent } from './components/create/create.component';
 import { ListAvailableComponent } from './components/list-available/list-available.component';
 import { ListCompletedComponent } from './components/list-completed/list-completed.component';
@@ -16,18 +17,26 @@ const routes: Routes = [
       {
         path: 'create',
         component: CreateComponent,
+        canActivate:[IndexerGuard]
+
       },
       {
         path: 'list-available',
         component: ListAvailableComponent,
+        canActivate:[IndexerGuard]
+
       },
       {
         path: 'list-completed',
         component: ListCompletedComponent,
+        canActivate:[IndexerGuard]
+
       },
       {
         path: 'list-rejected',
         component: ListRejectedComponent,
+        canActivate:[IndexerGuard]
+
       },
     ],
   },

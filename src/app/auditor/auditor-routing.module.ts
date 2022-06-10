@@ -1,5 +1,6 @@
 import { NgModule } from '@angular/core';
 import { Routes, RouterModule } from '@angular/router';
+import { ValidatorGuard } from '../guards/validator.guard';
 
 import { AuditorPage } from './auditor.page';
 import { ListToValidateComponent } from './components/list-to-validate/list-to-validate.component';
@@ -14,10 +15,12 @@ const routes: Routes = [
       {
         path: 'list-validated',
         component: ListValidatedComponent,
+        canActivate:[ValidatorGuard]
       },
       {
         path: 'list-to-validate',
         component: ListToValidateComponent,
+        canActivate:[ValidatorGuard]
       },
     ],
   },

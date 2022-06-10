@@ -1,5 +1,6 @@
 import { NgModule } from '@angular/core';
 import { Routes, RouterModule } from '@angular/router';
+import { AdminGuard } from '../guards/admin.guard';
 
 import { AdminPage } from './admin.page';
 import { MunicipiosComponent } from './components/municipios/municipios.component';
@@ -14,10 +15,12 @@ const routes: Routes = [
       {
         path: 'municipios',
         component: MunicipiosComponent,
+        canActivate:[AdminGuard]
       },
       {
         path: 'usuarios',
         component: UserComponent,
+        canActivate:[AdminGuard]
       },
     ],
   },

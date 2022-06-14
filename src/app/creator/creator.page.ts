@@ -14,6 +14,10 @@ export class CreatorPage implements OnInit {
       url: 'create',
     },
     {
+      title: 'Adjuntador de documentos',
+      url: 'create-form',
+    },
+    {
       title: 'Lista de documentos creados',
       url: 'list',
     },

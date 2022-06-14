@@ -6,11 +6,11 @@
   ">
   <ion-card>
     <form [formGroup]="myForm" (ngSubmit)="submitForm()">
-      <ion-input [(ngModel)]="correo" placeholder="correo" formControlName="correo" required></ion-input>
+      <ion-input placeholder="correo" formControlName="correo" required></ion-input>
       <ion-label color="danger" *ngIf="myForm.get('correo').touched && myForm.get('correo').errors?.required">Correo es
         necesario</ion-label>
       <ion-label color="danger" *ngIf="myForm.get('correo').errors?.pattern">Correo es invalido</ion-label>
-      <ion-input [(ngModel)]="password" placeholder="password" formControlName="password" required></ion-input>
+      <ion-input  placeholder="password" formControlName="password" type="password" required></ion-input>
       <ion-label color="danger" *ngIf="myForm.get('password').touched && myForm.get('password').errors?.required">
         Contraseña es necesaria</ion-label>
       <ion-label color="danger" *ngIf="myForm.get('password').errors?.minlength">Contraseña invalida</ion-label>

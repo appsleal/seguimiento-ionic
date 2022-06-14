@@ -8,6 +8,7 @@ import { HttpClientModule } from '@angular/common/http';
 import { BrowserModule } from '@angular/platform-browser';
 import { IonicStorageModule } from '@ionic/storage-angular';
 import { RouteReuseStrategy } from '@angular/router';
+import { InputMayusDirective } from './directives/input-mayus.directive';
 
 @NgModule({
   declarations: [AppComponent],

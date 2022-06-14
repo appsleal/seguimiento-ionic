@@ -17,7 +17,9 @@ export class CreateComponent implements OnInit {
 
   submitForm() {
     this.service.uploadFile(this.file).subscribe((res) => {
-      console.log(res);
+      setTimeout(() => {
+        window.location.reload();
+      }, 800);
     });
   }
   ngOnInit() {}

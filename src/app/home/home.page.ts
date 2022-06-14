@@ -16,7 +16,7 @@ import { AuthService } from '../services/auth.service';
 export class HomePage implements OnInit {
   myForm: FormGroup;
   submitted = false;
-  correo = 'appsleal@gmail.com';
+  usuario = 'HermesLeal';
   password = 'masternes1997';
 
   constructor(
@@ -31,13 +31,7 @@ export class HomePage implements OnInit {
 
   ngOnInit(): void {
     this.myForm = this.formBuilder.group({
-      correo: [
-        '',
-        [
-          Validators.required,
-          Validators.pattern('[a-z0-9._%+-]+@[a-z0-9.-]+.[a-z]{2,3}$'),
-        ],
-      ],
+      usuario: ['', [Validators.required, Validators.pattern('[[a-zA-Z0-9]')]],
       password: ['', [Validators.required, Validators.minLength(3)]],
     });
   }

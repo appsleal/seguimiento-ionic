@@ -1,0 +1,90 @@
+<form [formGroup]="formGroup" (ngSubmit)="create()">
+  <ion-grid fixed>
+    <ion-row>
+      <ion-col size="6">
+        <ion-item>
+          <ion-label position="floating">serial Sim</ion-label>
+          <ion-input formControlName="serial_sim" type="number"></ion-input>
+        </ion-item>
+      </ion-col>
+      <ion-col size="6">
+        <ion-item>
+          <ion-label position="floating">numero Sim</ion-label>
+          <ion-input formControlName="numero_sim" type="number"></ion-input>
+        </ion-item>
+      </ion-col>
+    </ion-row>
+    <ion-row>
+      <ion-col size="10">
+        <ion-auto-complete formControlName="tipo_docu" [dataProvider]="service" [options]="options"></ion-auto-complete>`
+      </ion-col>
+    </ion-row>
+    <ion-row>
+      <ion-col size="6">
+        <ion-item>
+          <ion-label position="floating">Nombre Completo</ion-label>
+          <ion-input formControlName="nombre" type="text" (keyup)="onKey($event)"></ion-input>
+        </ion-item>
+      </ion-col>
+      <ion-col size="2">
+        <ion-auto-complete formControlName="tipo" [dataProvider]="documento" [options]="tipo_cedula"></ion-auto-complete>`
+      </ion-col>
+      <ion-col size="4">
+        <ion-item>
+          <ion-label position="floating">Numero de documento</ion-label>
+          <ion-input formControlName="num_doc" type="number"></ion-input>
+        </ion-item>
+      </ion-col>
+    </ion-row>
+    <ion-row>
+      <ion-col size="12">
+        <ion-item>
+          <ion-label position="floating">Direccion</ion-label>
+          <ion-input formControlName="direccion" type="text"></ion-input>
+        </ion-item>
+      </ion-col>
+    </ion-row>
+    <ion-row>
+      <ion-col size="6">
+        <ion-auto-complete formControlName="municipio" [dataProvider]="departamento"></ion-auto-complete>`
+      </ion-col>
+      <ion-col size="6">
+        <ion-item>
+          <ion-label position="floating">Telefono</ion-label>
+          <ion-input formControlName="telefono" type="number"></ion-input>
+        </ion-item>
+      </ion-col>
+    </ion-row>
+    <ion-row>
+      <ion-col size="12">
+        <ion-item>
+          <ion-label position="floating">Nombre institucion</ion-label>
+          <ion-input formControlName="nombre_institucion" type="text"></ion-input>
+        </ion-item>
+      </ion-col>
+    </ion-row>
+    <ion-row>
+      <ion-col size="4">
+        <ion-item>
+          <ion-label position="floating">Nombre tutor</ion-label>
+          <ion-input formControlName="nombre_tutor" type="text"></ion-input>
+        </ion-item>
+      </ion-col>
+      <ion-col size="4">
+        <ion-item>
+          <ion-label position="floating">Telefono tutor</ion-label>
+          <ion-input formControlName="telefono_tutor" type="number"></ion-input>
+        </ion-item>
+      </ion-col>
+      <ion-col size="4">
+        <ion-item>
+          <ion-label position="floating">Cedula tutor</ion-label>
+          <ion-input formControlName="cdula_tutor" type="number"></ion-input>
+        </ion-item>
+      </ion-col>
+    </ion-row>
+
+  </ion-grid>
+  <ion-button type="submit" expand="block" color="success" [disabled]="formGroup.invalid">Crear</ion-button>
+
+</form>

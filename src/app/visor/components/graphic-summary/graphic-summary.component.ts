@@ -41,7 +41,7 @@ export class GraphicSummaryComponent implements OnInit {
       datalabels: {
         anchor: 'center',
         align: 'end',
-        color: '#fff',
+        color: '#C6ADAD',
         font: {
           size: 50,
         },
@@ -53,7 +53,7 @@ export class GraphicSummaryComponent implements OnInit {
               sum += data;
             }
           });
-          const percentage = ((value * 100) / sum).toFixed(2) + '%';
+          const percentage = ((value * 100) / sum).toFixed(1) + '%';
           return percentage + ' - ' + value;
         },
       },

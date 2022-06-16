@@ -73,9 +73,9 @@ export class ChipsComponent implements OnInit {
     });
 
     this.service.uploadChip(formData).subscribe((_data) => {
-      // setTimeout(() => {
-      //   window.location.reload();
-      // }, 800);
+       setTimeout(() => {
+         window.location.reload();
+       }, 800);
     });
   }
 

@@ -74,9 +74,7 @@ export class AdminService {
 
   uploadChip(chip) {
     return this.http
-      .post(DB_URL + '/chips', {
-        chip,
-      })
+      .post(DB_URL + '/chips', chip)
       .pipe(
         this.toast.observe({
           loading: 'Espere un momento...',

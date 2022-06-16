@@ -48,14 +48,6 @@ export class CreatorService {
           headers: this.headers,
         }
       )
-      .pipe(
-        this.toast.observe({
-          loading: 'Espere un momento...',
-          success: 'Archivo validado correctamente',
-          error:
-            'Error encontrado al validar el archivo, por favor intente de nuevo',
-        })
-      );
   }
 
   getFiles() {

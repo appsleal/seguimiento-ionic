@@ -12,7 +12,6 @@ export class DepartamentoService {
   public departamento
   constructor(public http: HttpClient) {
     this.init()
-
   }
 
 

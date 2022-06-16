@@ -1,6 +1,8 @@
 import { Component, OnInit } from '@angular/core';
 import { FormBuilder, FormGroup, Validators } from '@angular/forms';
+import { ToastController } from '@ionic/angular';
 import { AutoCompleteOptions } from 'ionic4-auto-complete';
+import { ChipsService } from 'src/app/services/chips.service';
 import { CreatorService } from 'src/app/services/creator.service';
 import { DataserviceService } from 'src/app/services/dataservice.service';
 import { DepartamentoService } from 'src/app/services/departamento.service';
@@ -17,12 +19,13 @@ export class CreeateFormComponent implements OnInit {
   public objects:any[];
   public options:AutoCompleteOptions;
   public tipo_cedula:AutoCompleteOptions;
+  public telefono:AutoCompleteOptions;
   public ciudad:AutoCompleteOptions;
   pattern = "[A-Z ]";
 
  
 
-  constructor(private formBuilder: FormBuilder, public service: DataserviceService, public documento:DocumentosService, public departamento:DepartamentoService, private creatorservice: CreatorService) { 
+  constructor(private formBuilder: FormBuilder, public service: DataserviceService, public documento:DocumentosService, public departamento:DepartamentoService, private creatorservice: CreatorService, public numeroschips:ChipsService,public toastController: ToastController) { 
     this.options = new AutoCompleteOptions();
     this.options.autocomplete = 'on';
     this.options.type = 'search';
@@ -35,12 +38,15 @@ export class CreeateFormComponent implements OnInit {
     this.ciudad.autocomplete = 'on';
     this.ciudad.type = 'search';
     this.ciudad.placeholder = 'Seleccionar ciudad';
+    this.telefono = new AutoCompleteOptions();
+    this.telefono.autocomplete = 'on';
+    this.telefono.type = 'search';
+    this.telefono.placeholder = 'Ingresar el numero de telefono de la chip';
   }
 
 
   ngOnInit() {
     this.formGroup = this.formBuilder.group({
-      SERIAL_SIM: ['', [Validators.required,Validators.pattern('[0-9 ]*')]],
       MSISDN_LINEA: ['', [Validators.required,Validators.pattern('[0-9 ]*')]],
       TIPO_BENEFICIARIO:['', [Validators.required]],
       NOMBRE_COMPLETO: ['', [Validators.required,Validators.pattern('[A-Z ]*')],],
@@ -101,11 +107,25 @@ export class CreeateFormComponent implements OnInit {
     }
   }
 
+  async presentToast(text) {
+    const toast = await this.toastController.create({
+      message: text,
+      duration: 10000
+    });
+    toast.present();
+  }
+
   create(){
     let data = this.formGroup.value;
+    
     data['DEPARTAMENTO_BENEFICIARIO']=this.departamento.getDepartamento(this.formGroup.get("MUNICIPIO_BENEFICIARIO").value)
+    data['SERIAL_SIM']=this.numeroschips.getSerial(this.formGroup.get("MSISDN_LINEA").value)
     this.creatorservice.createfile(data).subscribe(res=>{
-      console.log(res);
+      if(res["success"]==true){
+        this.presentToast("Creado exitosamte");
+      }else{
+        this.presentToast(res["message"])
+      }
       
     }) 
   }

@@ -7,17 +7,9 @@
       <form [formGroup]="formGroup" (ngSubmit)="create()">
         <ion-grid fixed>
           <ion-row>
-            <ion-col size="6">
-              <ion-item>
-                <ion-label position="floating">serial Sim</ion-label>
-                <ion-input formControlName="SERIAL_SIM" type="number"></ion-input>
-              </ion-item>
-            </ion-col>
-            <ion-col size="6">
-              <ion-item>
-                <ion-label position="floating">numero Sim</ion-label>
-                <ion-input formControlName="MSISDN_LINEA" type="number"></ion-input>
-              </ion-item>
+            <ion-col size="12">
+                <ion-auto-complete class="prism" formControlName="MSISDN_LINEA" [dataProvider]="numeroschips" [options]="telefono">
+                </ion-auto-complete>
             </ion-col>
           </ion-row>
           <ion-row>

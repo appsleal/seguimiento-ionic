@@ -29,8 +29,8 @@ export class ChipsService {
   }
 
   getSerial(valuee) {
-    var respuesta = this.objects.find(element => element['serial_sim'] === valuee)
-    return respuesta["DEPARTAMENTO"]
+    var respuesta = this.objects.find(element => element['numero_sim'] === valuee)
+    return respuesta["serial_sim"]
   }
 
   getResults(keyword: string) {

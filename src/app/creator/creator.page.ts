@@ -9,10 +9,10 @@ import { CreatorService } from '../services/creator.service';
 })
 export class CreatorPage implements OnInit {
   navigate = [
-    {
+    /* {
       title: 'Creador de documentos',
       url: 'create',
-    },
+    }, */
     {
       title: 'Adjuntador de documentos',
       url: 'create-form',
@@ -20,6 +20,10 @@ export class CreatorPage implements OnInit {
     {
       title: 'Lista de documentos creados',
       url: 'list',
+    },
+    {
+      title: 'Generar documento',
+      url: 'create',
     },
   ];
   constructor(private router: Router) {}

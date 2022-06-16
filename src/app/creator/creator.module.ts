@@ -13,6 +13,7 @@ import { NgxDatatableModule } from '@swimlane/ngx-datatable';
 import { CreeateFormComponent } from './components/creeate-form/creeate-form.component';
 import { AutoCompleteModule } from 'ionic4-auto-complete';
 import { InputMayusDirective } from '../directives/input-mayus.directive';
+import { CsvModule } from '@ctrl/ngx-csv';
 
 @NgModule({
   imports: [
@@ -23,6 +24,7 @@ import { InputMayusDirective } from '../directives/input-mayus.directive';
     NgxDatatableModule,
     ReactiveFormsModule,
     AutoCompleteModule,
+    CsvModule
   ],
   declarations: [CreatorPage, CreateComponent, ListComponent,CreeateFormComponent,InputMayusDirective],
 })

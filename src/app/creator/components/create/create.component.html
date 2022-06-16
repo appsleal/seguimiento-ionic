@@ -1,15 +1,52 @@
-<div style="height: 100%; display: flex; align-items: center; justify-content: center;">
+<ion-header>
+  <ion-toolbar>
+    <ion-title class="ion-text-center">Descargar informes</ion-title>
+  </ion-toolbar>
+</ion-header>
+
+<ion-content>
+  <ion-grid>
+    <ion-item>
+      <ion-label>Seleccionar fecha</ion-label>
+      <ion-input
+        value="{{ date | date: 'dd.MM.yyyy' }}"
+        id="date"
+        class="ion-text-end"
+      ></ion-input>
+      <ion-popover trigger="date" size="cover">
+        <ng-template>
+          <ion-datetime
+            presentation="date"
+            [(ngModel)]="date"
+            locale="es-ES"
+            (ionChange)="fecha()"
+          ></ion-datetime>
+        </ng-template>
+      </ion-popover>
+    </ion-item>
+  </ion-grid>
   <ion-card>
-    <ion-card-header>
-      <ion-card-title>
-        <h1>Creador de Archivos</h1>
-      </ion-card-title>
-    </ion-card-header>
+    <ngx-datatable #table class="material striped" [columnMode]="columnMode.force" [headerHeight]="50"
+      [footerHeight]="50" rowHeight="auto" [limit]="10" [rows]="rows">
+      <ngx-datatable-column name="GUIA" prop="GUIA">
+        <ng-template let-row="row" ngx-datatable-cell-template>
+          {{row.GUIA}}
+        </ng-template>
+      </ngx-datatable-column>
+      <ngx-datatable-column name="SERIAL_SIM" prop="SERIAL_SIM">
+        <ng-template let-row="row" ngx-datatable-cell-template>
+          {{row.SERIAL_SIM}}
+        </ng-template>
+      </ngx-datatable-column>
+     
+      <ngx-datatable-column name="MSISDN_LINEA" prop="MSISDN_LINEA">
+        <ng-template let-row="row" ngx-datatable-cell-template>
+          {{row.MSISDN_LINEA}}
+        </ng-template>
+      </ngx-datatable-column>
+    </ngx-datatable>
     <ion-card-content>
-      <ion-item lines="none">
-        <input type="file" (change)="onFileChange($event)" />
-      </ion-item>
-      <ion-button color="primary" expand="block" (click)="submitForm()">Subir Archvio</ion-button>
+      <ion-button expand="block" color="success" csvLink [data]="rows" [headers]="headers" [filename]="name">Exportar a CSV</ion-button>
     </ion-card-content>
   </ion-card>
-</div>
+</ion-content>

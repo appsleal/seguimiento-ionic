@@ -10,7 +10,6 @@
       <ion-label color="danger" *ngIf="myForm.get('usuario').touched && myForm.get('usuario').errors?.required">Correo
         es
         necesario</ion-label>
-      <ion-label color="danger" *ngIf="myForm.get('usuario').errors?.pattern">Usuario es invalido</ion-label>
       <ion-input [(ngModel)]="password" placeholder="password" formControlName="password" required></ion-input>
       <ion-label color="danger" *ngIf="myForm.get('password').touched && myForm.get('password').errors?.required">
         Contraseña es necesaria</ion-label>

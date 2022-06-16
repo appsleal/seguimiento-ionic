@@ -13,22 +13,22 @@ const routes: Routes = [
     component: CreatorPage,
     children: [
       { path: '', pathMatch: 'full', redirectTo: 'create' },
-      {
+       {
         path: 'create',
         component: CreateComponent,
-        canActivate:[CreatorGuard]
+        canActivate: [CreatorGuard]
 
-      },
+      }, 
       {
         path: 'create-form',
         component: CreeateFormComponent,
-        canActivate:[CreatorGuard]
+        canActivate: [CreatorGuard]
 
       },
       {
         path: 'list',
         component: ListComponent,
-        canActivate:[CreatorGuard]
+        canActivate: [CreatorGuard]
 
       },
     ],
@@ -39,4 +39,4 @@ const routes: Routes = [
   imports: [RouterModule.forChild(routes)],
   exports: [RouterModule],
 })
-export class CreatorPageRoutingModule {}
+export class CreatorPageRoutingModule { }

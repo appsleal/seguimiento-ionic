@@ -10,20 +10,20 @@
             <ion-col size="6">
               <ion-item>
                 <ion-label position="floating">serial Sim</ion-label>
-                <ion-input formControlName="serial_sim" type="number"></ion-input>
+                <ion-input formControlName="SERIAL_SIM" type="number"></ion-input>
               </ion-item>
             </ion-col>
             <ion-col size="6">
               <ion-item>
                 <ion-label position="floating">numero Sim</ion-label>
-                <ion-input formControlName="numero_sim" type="number"></ion-input>
+                <ion-input formControlName="MSISDN_LINEA" type="number"></ion-input>
               </ion-item>
             </ion-col>
           </ion-row>
           <ion-row>
             <ion-col size="12" style=" display: flex; align-items: center; justify-content: center;">
 
-              <ion-auto-complete class="prism" formControlName="tipo_docu" [dataProvider]="service" [options]="options">
+              <ion-auto-complete class="prism" formControlName="TIPO_BENEFICIARIO" [dataProvider]="service" [options]="options">
               </ion-auto-complete>
 
             </ion-col>
@@ -32,18 +32,18 @@
             <ion-col size="6">
               <ion-item>
                 <ion-label position="floating">Nombre Completo</ion-label>
-                <ion-input formControlName="nombre" type="text" (keyup)="onKey($event)"></ion-input>
+                <ion-input formControlName="NOMBRE_COMPLETO" type="text" (keyup)="onKey($event)"></ion-input>
               </ion-item>
             </ion-col>
             <ion-col size="2" style=" display: flex; align-items: center; justify-content: center;">
 
-              <ion-auto-complete formControlName="tipo" [dataProvider]="documento" [options]="tipo_cedula">
+              <ion-auto-complete formControlName="TIPO_DE_DOCUMENTO" [dataProvider]="documento" [options]="tipo_cedula">
               </ion-auto-complete>
             </ion-col>
             <ion-col size="4">
               <ion-item>
                 <ion-label position="floating">Numero de documento</ion-label>
-                <ion-input formControlName="num_doc" type="number"></ion-input>
+                <ion-input formControlName="NUMERO_DE_DOCUMENTO" type="number"></ion-input>
               </ion-item>
             </ion-col>
           </ion-row>
@@ -51,18 +51,18 @@
             <ion-col size="12">
               <ion-item>
                 <ion-label position="floating">Direccion</ion-label>
-                <ion-input formControlName="direccion" type="text"></ion-input>
+                <ion-input formControlName="DIRECCION_BARRIO_BENEFICIARIO" type="text"></ion-input>
               </ion-item>
             </ion-col>
           </ion-row>
           <ion-row>
             <ion-col size="6" style=" display: flex; align-items: center; justify-content: center;">
-              <ion-auto-complete formControlName="municipio" [dataProvider]="departamento"></ion-auto-complete>
+              <ion-auto-complete formControlName="MUNICIPIO_BENEFICIARIO" [dataProvider]="departamento" [options]="ciudad"></ion-auto-complete>
             </ion-col>
             <ion-col size="6">
               <ion-item>
                 <ion-label position="floating">Telefono</ion-label>
-                <ion-input formControlName="telefono" type="number"></ion-input>
+                <ion-input formControlName="NUMERO_DE_TELEFONO" type="number"></ion-input>
               </ion-item>
             </ion-col>
           </ion-row>
@@ -70,7 +70,7 @@
             <ion-col size="12">
               <ion-item>
                 <ion-label position="floating">Nombre institucion</ion-label>
-                <ion-input formControlName="nombre_institucion" type="text"></ion-input>
+                <ion-input formControlName="NOMBRE_INSTITUCION_EDUCATIVA" type="text"></ion-input>
               </ion-item>
             </ion-col>
           </ion-row>
@@ -78,19 +78,19 @@
             <ion-col size="4">
               <ion-item>
                 <ion-label position="floating">Nombre tutor</ion-label>
-                <ion-input formControlName="nombre_tutor" type="text"></ion-input>
+                <ion-input formControlName="NOMBRE_COMPLETO_TUTOR" type="text" (keyup)="nombreTutor($event)"></ion-input>
               </ion-item>
             </ion-col>
             <ion-col size="4">
               <ion-item>
                 <ion-label position="floating">Telefono tutor</ion-label>
-                <ion-input formControlName="telefono_tutor" type="number"></ion-input>
+                <ion-input formControlName="TELEFONO_CONTACTO_TUTOR" type="number"></ion-input>
               </ion-item>
             </ion-col>
             <ion-col size="4">
               <ion-item>
                 <ion-label position="floating">Cedula tutor</ion-label>
-                <ion-input formControlName="cdula_tutor" type="number"></ion-input>
+                <ion-input formControlName="NUMERO_DOCUMENTO_TUTOR" type="number"></ion-input>
               </ion-item>
             </ion-col>
           </ion-row>

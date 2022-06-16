@@ -10,6 +10,7 @@ import { AuditorPage } from './auditor.page';
 import { ListToValidateComponent } from './components/list-to-validate/list-to-validate.component';
 import { ListValidatedComponent } from './components/list-validated/list-validated.component';
 import { NgxDatatableModule } from '@swimlane/ngx-datatable';
+import { CsvModule } from '@ctrl/ngx-csv';
 
 @NgModule({
   imports: [
@@ -19,6 +20,7 @@ import { NgxDatatableModule } from '@swimlane/ngx-datatable';
     AuditorPageRoutingModule,
     NgxDatatableModule,
     ReactiveFormsModule,
+    CsvModule
   ],
   declarations: [AuditorPage, ListToValidateComponent, ListValidatedComponent],
 })

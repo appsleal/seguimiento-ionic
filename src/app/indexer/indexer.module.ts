@@ -12,6 +12,7 @@ import { ListAvailableComponent } from './components/list-available/list-availab
 import { ListCompletedComponent } from './components/list-completed/list-completed.component';
 import { ListRejectedComponent } from './components/list-rejected/list-rejected.component';
 import { NgxDatatableModule } from '@swimlane/ngx-datatable';
+import { CsvModule } from '@ctrl/ngx-csv';
 
 @NgModule({
   imports: [
@@ -20,6 +21,7 @@ import { NgxDatatableModule } from '@swimlane/ngx-datatable';
     IonicModule,
     IndexerPageRoutingModule,
     NgxDatatableModule,
+    CsvModule
   ],
   declarations: [
     IndexerPage,

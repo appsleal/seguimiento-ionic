@@ -1,6 +1,7 @@
 import { Component, OnInit } from '@angular/core';
 import { FormBuilder, FormGroup, Validators } from '@angular/forms';
 import { AutoCompleteOptions } from 'ionic4-auto-complete';
+import { CreatorService } from 'src/app/services/creator.service';
 import { DataserviceService } from 'src/app/services/dataservice.service';
 import { DepartamentoService } from 'src/app/services/departamento.service';
 import { DocumentosService } from 'src/app/services/documentos.service';
@@ -21,7 +22,7 @@ export class CreeateFormComponent implements OnInit {
 
  
 
-  constructor(private formBuilder: FormBuilder, public service: DataserviceService, public documento:DocumentosService, public departamento:DepartamentoService) { 
+  constructor(private formBuilder: FormBuilder, public service: DataserviceService, public documento:DocumentosService, public departamento:DepartamentoService, private creatorservice: CreatorService) { 
     this.options = new AutoCompleteOptions();
     this.options.autocomplete = 'on';
     this.options.type = 'search';
@@ -39,24 +40,39 @@ export class CreeateFormComponent implements OnInit {
 
   ngOnInit() {
     this.formGroup = this.formBuilder.group({
-      serial_sim: ['', [Validators.required]],
-      numero_sim: ['', [Validators.required]],
-      tipo:['', [Validators.required]],
-      nombre: ['', [Validators.required,Validators.pattern('[A-Z ]*')],],
-      tipo_docu: ['', [Validators.required]],
-      num_doc: ['', [Validators.required]],
-      telefono: ['', [Validators.required]],
-      municipio: ['', [Validators.required]],
-      direccion: ['', [Validators.required]],
-      nombre_tutor: [''],
-      telefono_tutor: [''],
-      cdula_tutor: [''],
-      nombre_institucion: ['', [Validators.required]],
+      SERIAL_SIM: ['', [Validators.required,Validators.pattern('[0-9 ]*')]],
+      MSISDN_LINEA: ['', [Validators.required,Validators.pattern('[0-9 ]*')]],
+      TIPO_BENEFICIARIO:['', [Validators.required]],
+      NOMBRE_COMPLETO: ['', [Validators.required,Validators.pattern('[A-Z ]*')],],
+      TIPO_DE_DOCUMENTO: ['', [Validators.required]],
+      NUMERO_DE_DOCUMENTO: ['', [Validators.required,Validators.pattern('[0-9 ]*')]],
+      NUMERO_DE_TELEFONO: ['', [Validators.required]],
+      MUNICIPIO_BENEFICIARIO: ['', [Validators.required]],
+      DIRECCION_BARRIO_BENEFICIARIO: ['', [Validators.required,Validators.pattern('[A-Z0-9 ]*')]],
+      NOMBRE_COMPLETO_TUTOR: ['',[,Validators.pattern('[A-Z ]*')]],
+      TELEFONO_CONTACTO_TUTOR: ['',[Validators.pattern('[0-9 ]*')]],
+      NUMERO_DOCUMENTO_TUTOR: ['',[Validators.pattern('[0-9 ]*')]],
+      NOMBRE_INSTITUCION_EDUCATIVA: ['', [Validators.required,,Validators.pattern('[A-Z ]*')]],
 
     });
 
-    this.formGroup.controls.nombre.valueChanges.subscribe((value: string) => {
-      this.formGroup.controls.nombre.setValue(value.toUpperCase(), 
+    this.formGroup.controls.NOMBRE_COMPLETO.valueChanges.subscribe((value: string) => {
+      this.formGroup.controls.NOMBRE_COMPLETO.setValue(value.toUpperCase(), 
+      {emitEvent: false});
+    })
+
+    this.formGroup.controls.DIRECCION_BARRIO_BENEFICIARIO.valueChanges.subscribe((value: string) => {
+      this.formGroup.controls.DIRECCION_BARRIO_BENEFICIARIO.setValue(value.toUpperCase(), 
+      {emitEvent: false});
+    })
+
+    this.formGroup.controls.NOMBRE_COMPLETO_TUTOR.valueChanges.subscribe((value: string) => {
+      this.formGroup.controls.NOMBRE_COMPLETO_TUTOR.setValue(value.toUpperCase(), 
+      {emitEvent: false});
+    })
+
+    this.formGroup.controls.NOMBRE_COMPLETO_TUTOR.valueChanges.subscribe((value: string) => {
+      this.formGroup.controls.NOMBRE_COMPLETO_TUTOR.setValue(value.toUpperCase(), 
       {emitEvent: false});
     })
   }
@@ -64,17 +80,33 @@ export class CreeateFormComponent implements OnInit {
   onKey(event){
     var pattern = "[A-Za-z ]";
     if(!event.key.match(pattern)){
-      var data:string = this.formGroup.get("nombre").value;
+      var data:string = this.formGroup.get("NOMBRE_COMPLETO").value;
       
       this.formGroup.patchValue({
-        "nombre":data.slice(0,data.length-1)
+        "NOMBRE_COMPLETO":data.slice(0,data.length-1)
+      })
+      
+    }
+  }
+
+  nombreTutor(event){
+    var pattern = "[A-Za-z ]";
+    if(!event.key.match(pattern)){
+      var data:string = this.formGroup.get("NOMBRE_COMPLETO_TUTOR").value;
+      
+      this.formGroup.patchValue({
+        "NOMBRE_COMPLETO_TUTOR":data.slice(0,data.length-1)
       })
       
     }
   }
 
   create(){
-    console.log(this.formGroup.value);
-    
+    let data = this.formGroup.value;
+    data['DEPARTAMENTO_BENEFICIARIO']=this.departamento.getDepartamento(this.formGroup.get("MUNICIPIO_BENEFICIARIO").value)
+    this.creatorservice.createfile(data).subscribe(res=>{
+      console.log(res);
+      
+    }) 
   }
 }

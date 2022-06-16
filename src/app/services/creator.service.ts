@@ -39,9 +39,60 @@ export class CreatorService {
       );
   }
 
+  createfile(batch) {
+    return this.http
+      .post(
+        DB_URL + this.section,
+        batch ,
+        {
+          headers: this.headers,
+        }
+      )
+      .pipe(
+        this.toast.observe({
+          loading: 'Espere un momento...',
+          success: 'Archivo validado correctamente',
+          error:
+            'Error encontrado al validar el archivo, por favor intente de nuevo',
+        })
+      );
+  }
+
   getFiles() {
     return this.http
       .get(DB_URL + this.section, {
+        headers: this.headers,
+      })
+      .pipe(
+        this.toast.observe({
+          loading: 'Espere un momento...',
+          success: 'Archivos obtenidos correctamente',
+          error:
+            'Error encontrado al obtener los archivos, por favor intente de nuevo',
+        })
+      );
+  }
+
+  getFilesDoc() {
+    return this.http
+      .get(DB_URL + this.section+"/generar", {
+        headers: this.headers,
+      })
+      .pipe(
+        this.toast.observe({
+          loading: 'Espere un momento...',
+          success: 'Archivos obtenidos correctamente',
+          error:
+            'Error encontrado al obtener los archivos, por favor intente de nuevo',
+        })
+      );
+  }
+
+  getFilesDocFecha(date) {
+    return this.http
+      .post(DB_URL + this.section+"/generarFecha",{
+        "date":date
+      }, {
         headers: this.headers,
       })
       .pipe(

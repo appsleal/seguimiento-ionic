@@ -24,6 +24,12 @@ export class DepartamentoService {
   }
 
 
+  getDepartamento(valuee){
+    var respuesta = this.departamento.find(element=> element['MUNICIPIO'] === valuee)
+    return respuesta["DEPARTAMENTO"]
+  }
+
+
 
 getResults(keyword: string) {
   keyword = keyword.toLowerCase();

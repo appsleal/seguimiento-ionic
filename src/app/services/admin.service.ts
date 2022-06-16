@@ -71,4 +71,28 @@ export class AdminService {
       })
     );
   }
+
+  uploadChip(chip) {
+    return this.http
+      .post(DB_URL + '/chips', {
+        chip,
+      })
+      .pipe(
+        this.toast.observe({
+          loading: 'Espere un momento...',
+          success: 'Se ha Subido el chip correctamente.',
+          error: 'Error encontrado al intentar subir el chip.',
+        })
+      );
+  }
+
+  listChip() {
+    return this.http.get(DB_URL + '/chips').pipe(
+      this.toast.observe({
+        loading: 'Espere un momento...',
+        success: 'Se ha obtenido la lista de chips correctamente.',
+        error: 'Error encontrado al obtener la lista de chips.',
+      })
+    );
+  }
 }

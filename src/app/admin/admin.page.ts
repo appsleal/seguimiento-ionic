@@ -16,6 +16,10 @@ export class AdminPage implements OnInit {
       title: 'Usuarios',
       url: 'usuarios',
     },
+    {
+      title: 'Chips',
+      url: 'chips',
+    },
   ];
   constructor(private router: Router) {}
 

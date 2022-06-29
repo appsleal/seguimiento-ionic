@@ -38,7 +38,9 @@
 
 
 
-        <ion-button type="submit" color="primary" expand="block" slot="start" fill="outline">Entrar</ion-button>
+        <ion-button type="submit" [disabled]="myForm.invalid" color="primary" expand="block" slot="start"
+          fill="outline">Entrar
+        </ion-button>
 
       </form>
     </ion-card-content>

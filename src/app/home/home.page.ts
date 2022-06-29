@@ -32,7 +32,7 @@ export class HomePage implements OnInit {
 
   ngOnInit(): void {
     this.myForm = this.formBuilder.group({
-      usuario: ['', [Validators.required, Validators.pattern('[[a-zA-Z0-9]')]],
+      usuario: ['', [Validators.required, Validators.pattern('[a-zA-Z0-9]*')]],
       password: ['', [Validators.required, Validators.minLength(3)]],
     });
   }

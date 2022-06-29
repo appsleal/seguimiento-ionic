@@ -10,7 +10,7 @@ import { AdminPage } from './admin.page';
 import { MunicipiosComponent } from './components/municipios/municipios.component';
 import { NgxDatatableModule } from '@swimlane/ngx-datatable';
 import { UserComponent } from './components/user/user.component';
-import { ChipsComponent } from './components/chips/chips.component'
+import { ChipsComponent } from './components/chips/chips.component';
 
 @NgModule({
   imports: [
@@ -21,6 +21,6 @@ import { ChipsComponent } from './components/chips/chips.component'
     NgxDatatableModule,
     ReactiveFormsModule,
   ],
-  declarations: [AdminPage, MunicipiosComponent, UserComponent,ChipsComponent],
+  declarations: [AdminPage, MunicipiosComponent, UserComponent, ChipsComponent],
 })
 export class AdminPageModule {}

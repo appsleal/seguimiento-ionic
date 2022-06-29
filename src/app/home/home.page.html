@@ -5,20 +5,45 @@
     justify-content: center;
   ">
   <ion-card>
-    <form [formGroup]="myForm" (ngSubmit)="submitForm()">
-      <ion-input [(ngModel)]="usuario" placeholder="Usuario" formControlName="usuario" required></ion-input>
-      <ion-label color="danger" *ngIf="myForm.get('usuario').touched && myForm.get('usuario').errors?.required">Correo
-        es
-        necesario</ion-label>
-      <ion-input [(ngModel)]="password" placeholder="password" formControlName="password" required></ion-input>
-      <ion-label color="danger" *ngIf="myForm.get('password').touched && myForm.get('password').errors?.required">
-        Contraseña es necesaria</ion-label>
-      <ion-label color="danger" *ngIf="myForm.get('password').errors?.minlength">Contraseña invalida</ion-label>
-      <ion-row>
-        <ion-col>
-          <ion-button type="submit" color="danger" expand="block">Entrar</ion-button>
-        </ion-col>
-      </ion-row>
-    </form>
+    <ion-card-header>
+      <ion-card-title align="center">
+        Iniciar Sesión
+      </ion-card-title>
+    </ion-card-header>
+    <ion-card-content>
+      <form [formGroup]="myForm" (ngSubmit)="submitForm()">
+        <ion-item lines="none">
+          <ion-label position="floating">
+            <ion-icon name="person" slot="start"></ion-icon>
+            Usuario
+          </ion-label>
+          <ion-input [(ngModel)]="usuario" placeholder="Usuario" formControlName="usuario" required></ion-input>
+        </ion-item>
+        <ion-label color="danger" *ngIf="myForm.get('usuario').touched && myForm.get('usuario').errors?.required">
+          Correo es necesario
+        </ion-label>
+
+        <ion-item lines="none">
+          <ion-label position="floating">
+            <ion-icon name="lock-closed" slot="start"></ion-icon>
+            Contraseña
+          </ion-label>
+          <ion-input [(ngModel)]="password" placeholder="Contraseña" formControlName="password" required></ion-input>
+        </ion-item>
+
+        <ion-label color="danger" *ngIf="myForm.get('password').touched && myForm.get('password').errors?.required">
+          Contraseña es necesaria
+        </ion-label>
+        <ion-label color="danger" *ngIf="myForm.get('password').errors?.minlength">Contraseña invalida</ion-label>
+
+
+
+        <ion-button type="submit" color="primary" expand="block" slot="start" fill="outline">Entrar</ion-button>
+
+      </form>
+    </ion-card-content>
   </ion-card>
+
+  <img class="logo" src="assets/icon/Logo.jpg" />
+
 </div>

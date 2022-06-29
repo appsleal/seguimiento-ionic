@@ -16,8 +16,9 @@ import { AuthService } from '../services/auth.service';
 export class HomePage implements OnInit {
   myForm: FormGroup;
   submitted = false;
-  usuario = 'HermesLeal';
-  password = 'masternes1997';
+  usuario = '';
+  password = '';
+  logo = 'assets/icon/Logo.jpg';
 
   constructor(
     public formBuilder: FormBuilder,
